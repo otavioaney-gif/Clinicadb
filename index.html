@@ -1,0 +1,3501 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Clínica Estética</title>
+
+<style>
+
+/* =====================================================
+   IDENTIDADE VISUAL — CLÍNICA ESTÉTICA / BANCO DE DADOS
+   Inspirada na apresentação: marrom escuro + bege/dourado
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --marrom: #3b3129;
+    --marrom-escuro: #2d2722;
+    --marrom-medio: #4a3d33;
+    --bege: #d2b98f;
+    --bege-claro: #eadbc4;
+    --creme: #f3eadc;
+    --branco: #fffaf2;
+    --borda: rgba(210, 185, 143, 0.35);
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--marrom);
+    color: var(--creme);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Elemento decorativo discreto, inspirado no símbolo do slide */
+body::before {
+    content: "";
+    position: fixed;
+    right: -150px;
+    bottom: -170px;
+    width: 500px;
+    height: 500px;
+    border: 2px solid rgba(210, 185, 143, 0.08);
+    border-radius: 45% 55% 40% 60%;
+    transform: rotate(35deg);
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    right: -90px;
+    bottom: -110px;
+    width: 360px;
+    height: 430px;
+    border: 2px solid rgba(210, 185, 143, 0.06);
+    border-radius: 50% 45% 55% 40%;
+    transform: rotate(-28deg);
+    pointer-events: none;
+    z-index: 0;
+}
+
+header {
+    background: rgba(45, 39, 34, 0.97);
+    color: var(--bege-claro);
+    padding: 22px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--borda);
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 27px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    color: var(--bege);
+}
+
+nav button {
+    background: transparent;
+    border: none;
+    color: var(--creme);
+    margin-left: 18px;
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: 0.4px;
+    transition: 0.25s;
+}
+
+nav button:hover {
+    color: var(--bege);
+    transform: translateY(-1px);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 45px auto;
+    position: relative;
+    z-index: 1;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.hero {
+        position: relative;
+background:
+        linear-gradient(rgba(45, 39, 34, 0.76), rgba(45, 39, 34, 0.88)),
+        url("https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1600&q=80");
+    background-size: cover;
+    background-position: center;
+    min-height: 440px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--creme);
+    padding: 50px 40px;
+    border-bottom: 1px solid var(--borda);
+}
+
+.sobre-hero {
+    position: absolute;
+    top: 28px;
+    right: 6%;
+    background: transparent;
+    color: var(--creme);
+    border: 1px solid var(--borda);
+    padding: 10px 18px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: normal;
+    z-index: 2;
+}
+
+.sobre-hero:hover {
+    background: rgba(210, 185, 143, 0.12);
+    color: var(--bege);
+    border-color: var(--bege);
+}
+
+.hero h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 52px;
+    font-weight: normal;
+    color: var(--bege);
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: var(--creme);
+    margin-bottom: 28px;
+}
+
+.hero .hero-frase {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 24px;
+    font-weight: normal;
+    color: var(--bege);
+    letter-spacing: 0.5px;
+    margin: 4px 0;
+}
+
+.hero .hero-frase:last-of-type {
+    margin-bottom: 28px;
+}
+
+button,
+.btn {
+    background: var(--bege);
+    color: var(--marrom-escuro);
+    border: 1px solid var(--bege);
+    padding: 12px 21px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.25s;
+}
+
+button:hover,
+.btn:hover {
+    background: var(--bege-claro);
+    border-color: var(--bege-claro);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--bege-claro);
+    border: 1px solid var(--borda);
+}
+
+.btn-secondary:hover {
+    background: rgba(210, 185, 143, 0.12);
+    color: var(--bege);
+}
+
+.btn-danger {
+    background: #8b5149;
+    color: white;
+    border-color: #8b5149;
+}
+
+.btn-success {
+    background: #6f7c62;
+    color: white;
+    border-color: #6f7c62;
+}
+
+.btn-warning {
+    background: #a27f4e;
+    color: white;
+    border-color: #a27f4e;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+    margin-top: 30px;
+}
+
+.card {
+    background: var(--marrom-medio);
+    padding: 27px;
+    border-radius: 3px;
+    border: 1px solid var(--borda);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+}
+
+.card h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: var(--bege);
+    font-size: 21px;
+    font-weight: normal;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: var(--creme);
+    margin-bottom: 8px;
+    line-height: 1.55;
+}
+
+.form-box {
+    max-width: 650px;
+    margin: auto;
+    background: var(--marrom-medio);
+    padding: 32px;
+    border-radius: 3px;
+    border: 1px solid var(--borda);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
+}
+
+.form-box h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 32px;
+    font-weight: normal;
+    margin-bottom: 22px;
+    color: var(--bege);
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 13px;
+    margin: 7px 0 16px;
+    background: var(--marrom-escuro);
+    color: var(--creme);
+    border: 1px solid var(--borda);
+    border-radius: 3px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--bege);
+    box-shadow: 0 0 0 2px rgba(210, 185, 143, 0.08);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(234, 219, 196, 0.55);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+label {
+    font-weight: bold;
+    color: var(--bege-claro);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: var(--marrom-medio);
+    border: 1px solid var(--borda);
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 13px;
+    border: 1px solid rgba(210, 185, 143, 0.18);
+    text-align: left;
+}
+
+th {
+    background: var(--marrom-escuro);
+    color: var(--bege);
+    font-weight: bold;
+}
+
+td {
+    color: var(--creme);
+}
+
+tr:nth-child(even) {
+    background: rgba(210, 185, 143, 0.035);
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-agendada {
+    background: #806a4c;
+    color: #f6e6c5;
+}
+
+.status-confirmada {
+    background: #56634d;
+    color: #e4efd9;
+}
+
+.status-realizada {
+    background: #53616a;
+    color: #dceaf0;
+}
+
+.status-cancelada {
+    background: #744541;
+    color: #f5d9d5;
+}
+
+.alert {
+    padding: 15px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    display: none;
+    border: 1px solid var(--borda);
+}
+
+.alert.success {
+    background: rgba(111, 124, 98, 0.25);
+    color: #dce8d2;
+}
+
+.alert.error {
+    background: rgba(139, 81, 73, 0.28);
+    color: #f2d3cf;
+}
+
+.section-title {
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 38px;
+    font-weight: normal;
+    color: var(--bege);
+    letter-spacing: 1px;
+    margin-bottom: 28px;
+}
+
+.profile {
+    background: var(--marrom-medio);
+    color: var(--creme);
+    padding: 22px;
+    border-radius: 3px;
+    border: 1px solid var(--borda);
+    margin-bottom: 22px;
+}
+
+.profile h3 {
+    color: var(--bege);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: normal;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.admin-link {
+    margin-top: 35px;
+    text-align: center;
+}
+
+.admin-link button {
+    background: transparent;
+    color: var(--bege);
+    border: 1px solid var(--borda);
+    font-size: 13px;
+    padding: 10px 16px;
+}
+
+.admin-header {
+    background: var(--marrom-escuro);
+    color: var(--creme);
+    padding: 22px;
+    border-radius: 3px;
+    border: 1px solid var(--borda);
+    margin-bottom: 28px;
+}
+
+.admin-header h3 {
+    color: var(--bege);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: normal;
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+footer {
+    margin-top: 60px;
+    background: var(--marrom-escuro);
+    color: var(--bege-claro);
+    text-align: center;
+    padding: 28px;
+    border-top: 1px solid var(--borda);
+    position: relative;
+    z-index: 1;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+@media(max-width: 700px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        text-align: center;
+    }
+
+    nav button {
+        margin: 5px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .section-title {
+        font-size: 30px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+}
+
+
+
+/* VÍDEO - SOBRE NÓS */
+.video-sobre {
+    margin-top: 30px;
+    padding: 28px;
+    text-align: center;
+    background: var(--marrom-medio);
+    border: 1px solid var(--borda);
+    border-radius: 6px;
+}
+
+.video-sobre h3 {
+    margin-bottom: 10px;
+    color: var(--bege);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 24px;
+}
+
+.video-sobre p {
+    margin-bottom: 18px;
+    color: var(--creme);
+}
+
+.video-link {
+    display: inline-block;
+    text-decoration: none;
+}
+
+@media (max-width: 600px) {
+    .video-sobre {
+        padding: 18px;
+        margin-top: 30px;
+    }
+
+    .video-sobre h3 {
+        font-size: 21px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        Clínica Estética
+    </div>
+
+    <nav id="menu">
+
+        <button onclick="showPage('home')">
+            Início
+        </button>
+<button onclick="showPage('servicos')">
+            Serviços
+        </button>
+
+        <button onclick="showPage('medicos')">
+            Médicos
+        </button>
+
+        <button onclick="showPage('login')">
+            Entrar
+        </button>
+
+        <button onclick="showPage('cadastro')">
+            Criar conta
+        </button>
+
+    </nav>
+
+</header>
+
+
+<!-- =====================================================
+     HOME
+===================================================== -->
+
+<section id="home" class="page active">
+
+    <div class="hero">
+
+        
+        <button class="sobre-hero" onclick="window.open('https://vt.tiktok.com/ZSqSQqDvW/', '_blank', 'noopener,noreferrer')">
+            Sobre nós
+        </button>
+
+<div>
+
+            <p class="hero-frase">
+                Onde tecnologia e genética se
+            </p>
+
+            <p class="hero-frase">
+                Encontram.
+            </p>
+
+            <button onclick="showPage('cadastro')">
+                Criar minha conta
+            </button>
+
+            <button
+                class="btn-secondary"
+                onclick="showPage('login')">
+
+                Já tenho uma conta
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Sobre nós
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>
+                    Atendimento personalizado
+                </h3>
+
+                <p>
+                    Cada paciente recebe uma avaliação
+                    individualizada.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>
+                    Profissionais qualificados
+                </h3>
+
+                <p>
+                    Médicos cadastrados e aprovados
+                    pela administração.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>
+                    Agendamento online
+                </h3>
+
+                <p>
+                    Escolha o serviço, médico, unidade,
+                    data e horário.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- ACESSO ADMINISTRATIVO -->
+
+        <div class="admin-link">
+
+            <button onclick="abrirLoginAdmin()">
+                Área Administrativa
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SERVIÇOS
+===================================================== -->
+
+<section id="servicos" class="page">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Nossos Serviços
+        </h2>
+
+        <div id="listaServicos" class="cards"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MÉDICOS
+===================================================== -->
+
+<section id="medicos" class="page">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Médicos disponíveis
+        </h2>
+
+        <div id="listaMedicos" class="cards"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CADASTRO PACIENTE
+===================================================== -->
+
+<section id="cadastro" class="page">
+
+    <div class="container">
+
+        <div class="form-box">
+
+            <h2>
+                Criar minha conta
+            </h2>
+
+            <div
+                id="cadastroAlert"
+                class="alert">
+            </div>
+
+            <form onsubmit="cadastrarPaciente(event)">
+
+                <label>
+                    Nome completo
+                </label>
+
+                <input
+                    type="text"
+                    id="cadNome"
+                    required
+                >
+
+                <label>
+                    Telefone
+                </label>
+
+                <input
+                    type="text"
+                    id="cadTelefone"
+                    required
+                >
+
+                <label>
+                    Data de nascimento
+                </label>
+
+                <input
+                    type="date"
+                    id="cadNascimento"
+                    required
+                >
+
+                <label>
+                    E-mail
+                </label>
+
+                <input
+                    type="email"
+                    id="cadEmail"
+                    required
+                >
+
+                <label>
+                    Senha
+                </label>
+
+                <input
+                    type="password"
+                    id="cadSenha"
+                    required
+                >
+
+                <button type="submit">
+                    Criar conta
+                </button>
+
+            </form>
+
+            <br>
+
+            <button
+                class="btn-secondary"
+                onclick="showPage('login')">
+
+                Já tenho uma conta
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SOLICITAÇÃO MÉDICO
+===================================================== -->
+
+<section id="cadastroMedico" class="page">
+
+    <div class="container">
+
+        <div class="form-box">
+
+            <h2>
+                Solicitação de cadastro médico
+            </h2>
+
+            <p>
+                O cadastro será enviado para análise
+                do administrador.
+            </p>
+
+            <br>
+
+            <div
+                id="medicoAlert"
+                class="alert">
+            </div>
+
+            <form onsubmit="solicitarCadastroMedico(event)">
+
+                <label>
+                    Nome completo
+                </label>
+
+                <input
+                    type="text"
+                    id="medNome"
+                    required
+                >
+
+                <label>
+                    Especialidade
+                </label>
+
+                <select
+                    id="medEspecialidade"
+                    required>
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    <option>
+                        Dermatologia
+                    </option>
+
+                    <option>
+                        Medicina Estética
+                    </option>
+
+                    <option>
+                        Cirurgia Plástica
+                    </option>
+
+                </select>
+
+                <label>
+                    Unidade de atendimento
+                </label>
+
+                <select id="medUnidade" required>
+                    <option value="">Selecione a unidade</option>
+                    <option value="1">Unidade Niterói - Niterói</option>
+                    <option value="2">Unidade Icaraí - Niterói</option>
+                    <option value="3">Unidade São Gonçalo - São Gonçalo</option>
+                    <option value="4">Unidade Duque de Caxias - Duque de Caxias</option>
+                </select>
+
+                <label>
+                    Telefone
+                </label>
+
+                <input
+                    type="text"
+                    id="medTelefone"
+                    required
+                >
+
+                <label>
+                    E-mail
+                </label>
+
+                <input
+                    type="email"
+                    id="medEmail"
+                    required
+                >
+
+                <label>
+                    Senha
+                </label>
+
+                <input
+                    type="password"
+                    id="medSenha"
+                    required
+                >
+
+                <button type="submit">
+                    Enviar para aprovação
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LOGIN PACIENTE / MÉDICO
+===================================================== -->
+
+<section id="login" class="page">
+
+    <div class="container">
+
+        <div class="form-box">
+
+            <h2>
+                Entrar
+            </h2>
+
+            <div
+                id="loginAlert"
+                class="alert">
+            </div>
+
+            <label>
+                E-mail
+            </label>
+
+            <input
+                type="email"
+                id="loginEmail"
+            >
+
+            <label>
+                Senha
+            </label>
+
+            <input
+                type="password"
+                id="loginSenha"
+            >
+
+            <button onclick="login()">
+                Entrar
+            </button>
+
+            <br><br>
+
+            <button
+                class="btn-secondary"
+                onclick="showPage('cadastro')">
+
+                Criar conta de paciente
+
+            </button>
+
+            <br><br>
+
+            <button
+                class="btn-secondary"
+                onclick="showPage('cadastroMedico')">
+
+                Sou médico
+
+            </button>
+
+            <br><br>
+
+            <button
+                class="btn-secondary"
+                onclick="abrirLoginAdmin()">
+
+                Acesso administrativo
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LOGIN ADMIN
+===================================================== -->
+
+<section id="loginAdmin" class="page">
+
+    <div class="container">
+
+        <div class="form-box">
+
+            <h2>
+                Acesso Administrativo
+            </h2>
+
+            <p>
+                Área exclusiva para administração
+                da clínica.
+            </p>
+
+            <br>
+
+            <div
+                id="adminLoginAlert"
+                class="alert">
+            </div>
+
+            <label>
+                Usuário
+            </label>
+
+            <input
+                type="text"
+                id="adminUsuario"
+                autocomplete="username"
+            >
+
+            <label>
+                Senha
+            </label>
+
+            <input
+                type="password"
+                id="adminSenha"
+                autocomplete="current-password"
+            >
+
+            <button onclick="loginAdmin()">
+                Entrar como administrador
+            </button>
+
+            <br><br>
+
+            <button
+                class="btn-secondary"
+                onclick="showPage('home')">
+
+                Voltar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ÁREA PACIENTE
+===================================================== -->
+
+<section id="paciente" class="page">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Área do Paciente
+        </h2>
+
+        <div
+            id="pacientePerfil"
+            class="profile">
+        </div>
+
+        <h3>
+            Agendar consulta
+        </h3>
+
+        <br>
+
+        <div class="form-box">
+
+            <div
+                id="consultaAlert"
+                class="alert">
+            </div>
+
+            <label>
+                Serviço
+            </label>
+
+            <select id="consultaServico"></select>
+
+            <label>
+                Unidade
+            </label>
+
+            <select id="consultaUnidade" onchange="filtrarMedicosPorUnidade()"></select>
+
+            <label>
+                Médico
+            </label>
+
+            <select id="consultaMedico"></select>
+
+            <label>
+                Data sugerida
+            </label>
+
+            <input
+                type="date"
+                id="consultaData"
+            >
+
+            <label>
+                Horário sugerido
+            </label>
+
+            <input
+                type="time"
+                id="consultaHorario"
+            >
+
+            <label>
+                Observações
+            </label>
+
+            <textarea
+                id="consultaObservacao">
+            </textarea>
+
+            <button onclick="agendarConsulta()">
+                Enviar sugestão ao médico
+            </button>
+
+        </div>
+
+        <br><br>
+
+        <h3>
+            Minhas consultas
+        </h3>
+
+        <div id="minhasConsultas"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ÁREA MÉDICO
+===================================================== -->
+
+<section id="medico" class="page">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Área do Médico
+        </h2>
+
+        <div
+            id="medicoPerfil"
+            class="profile">
+        </div>
+
+        <h3>
+            Minha agenda
+        </h3>
+
+        <div id="agendaMedico"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ÁREA ADMIN
+===================================================== -->
+
+<section id="admin" class="page">
+
+    <div class="container">
+
+        <div class="admin-header">
+
+            <h3>
+                Painel Administrativo
+            </h3>
+
+            <p>
+                Área exclusiva da administração.
+            </p>
+
+            <br>
+
+            <button
+                onclick="logout()">
+
+                Sair do administrador
+
+            </button>
+
+        </div>
+
+        <h2 class="section-title">
+            Visão geral da clínica
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>
+                    Pacientes
+                </h3>
+
+                <p id="totalPacientes">
+                    0
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>
+                    Médicos
+                </h3>
+
+                <p id="totalMedicos">
+                    0
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>
+                    Consultas
+                </h3>
+
+                <p id="totalConsultas">
+                    0
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>
+                    Solicitações
+                </h3>
+
+                <p id="totalSolicitacoes">
+                    0
+                </p>
+
+            </div>
+
+        </div>
+
+        <br><br>
+
+        <!-- CADASTRAR MÉDICO DIRETAMENTE PELO ADMIN -->
+
+        <h3>
+            Cadastrar novo médico
+        </h3>
+
+        <br>
+
+        <div class="form-box">
+
+            <div
+                id="cadastroMedicoAdminAlert"
+                class="alert">
+            </div>
+
+            <form onsubmit="cadastrarMedicoAdmin(event)">
+
+                <label>
+                    Nome completo
+                </label>
+
+                <input
+                    type="text"
+                    id="adminMedNome"
+                    required
+                >
+
+                <label>
+                    Especialidade
+                </label>
+
+                <select
+                    id="adminMedEspecialidade"
+                    required>
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    <option>
+                        Dermatologia
+                    </option>
+
+                    <option>
+                        Medicina Estética
+                    </option>
+
+                    <option>
+                        Cirurgia Plástica
+                    </option>
+
+                </select>
+
+                <label>
+                    Telefone
+                </label>
+
+                <input
+                    type="text"
+                    id="adminMedTelefone"
+                    required
+                >
+
+                <label>
+                    E-mail
+                </label>
+
+                <input
+                    type="email"
+                    id="adminMedEmail"
+                    required
+                >
+
+                <label>
+                    Senha para acesso do médico
+                </label>
+
+                <input
+                    type="password"
+                    id="adminMedSenha"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="btn-success">
+
+                    Cadastrar médico
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <br><br>
+
+        <h3>
+            Solicitações de médicos
+        </h3>
+
+        <div id="solicitacoesMedicos"></div>
+
+        <br><br>
+
+        <h3>
+            Pacientes cadastrados
+        </h3>
+
+        <div id="tabelaPacientes"></div>
+
+        <br><br>
+
+        <h3>
+            Médicos cadastrados
+        </h3>
+
+        <div id="tabelaMedicos"></div>
+
+        <br><br>
+
+        <h3>
+            Todas as consultas
+        </h3>
+
+        <div id="tabelaConsultas"></div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <p>
+        Clínica Estética © 2026
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   BANCO DE DADOS LOCAL
+===================================================== */
+
+let pacientes =
+    JSON.parse(localStorage.getItem("pacientes")) || [];
+
+let medicos =
+    JSON.parse(localStorage.getItem("medicos")) || [];
+
+let servicos =
+    JSON.parse(localStorage.getItem("servicos")) || [
+
+    {
+        id: 1,
+        nome: "Harmonização Facial com Abordagem Natural",
+        descricao: "Valorização dos traços naturais do paciente.",
+        valor: 800
+    },
+
+    {
+        id: 2,
+        nome: "Bioestimuladores de Colágeno",
+        descricao: "Tratamento para estimular a produção de colágeno.",
+        valor: 1200
+    },
+
+    {
+        id: 3,
+        nome: "Limpeza de Pele e Peelings",
+        descricao: "Limpeza e renovação da pele.",
+        valor: 350
+    },
+
+    {
+        id: 4,
+        nome: "Microagulhamento",
+        descricao: "Procedimento para estimular a renovação da pele.",
+        valor: 500
+    },
+
+    {
+        id: 5,
+        nome: "Tratamento para Manchas, Acne e Flacidez",
+        descricao: "Tratamento personalizado para a pele.",
+        valor: 600
+    }
+
+];
+
+let unidades =
+    JSON.parse(localStorage.getItem("unidades")) || [
+
+    {
+        id: 1,
+        nome: "Unidade Niterói",
+        cidade: "Niterói",
+        bairro: "Centro"
+    },
+
+    {
+        id: 2,
+        nome: "Unidade Icaraí",
+        cidade: "Niterói",
+        bairro: "Icaraí"
+    },
+
+    {
+        id: 3,
+        nome: "Unidade São Gonçalo",
+        cidade: "São Gonçalo",
+        bairro: "Centro"
+    },
+
+    {
+        id: 4,
+        nome: "Unidade Duque de Caxias",
+        cidade: "Duque de Caxias",
+        bairro: "Centro"
+    }
+
+];
+
+let consultas =
+    JSON.parse(localStorage.getItem("consultas")) || [];
+
+let solicitacoes =
+    JSON.parse(localStorage.getItem("solicitacoes")) || [];
+
+// Compatibilidade com médicos já cadastrados antes da inclusão de unidade.
+medicos = medicos.map((m, index) => ({
+    ...m,
+    unidadeId: Number(m.unidadeId || ((index % unidades.length) + 1))
+}));
+
+let usuarioAtual =
+    JSON.parse(sessionStorage.getItem("usuarioAtual")) || null;
+
+
+/* =====================================================
+   SALVAR DADOS
+===================================================== */
+
+function salvarDados() {
+
+    localStorage.setItem(
+        "pacientes",
+        JSON.stringify(pacientes)
+    );
+
+    localStorage.setItem(
+        "medicos",
+        JSON.stringify(medicos)
+    );
+
+    localStorage.setItem(
+        "servicos",
+        JSON.stringify(servicos)
+    );
+
+    localStorage.setItem(
+        "unidades",
+        JSON.stringify(unidades)
+    );
+
+    localStorage.setItem(
+        "consultas",
+        JSON.stringify(consultas)
+    );
+
+    localStorage.setItem(
+        "solicitacoes",
+        JSON.stringify(solicitacoes)
+    );
+
+}
+
+
+/* =====================================================
+   NAVEGAÇÃO
+===================================================== */
+
+function showPage(id) {
+
+    /* Proteção da área do paciente */
+
+    if(
+        id === "paciente" &&
+        (!usuarioAtual ||
+        usuarioAtual.tipo !== "paciente")
+    ) {
+
+        showPage("login");
+
+        return;
+    }
+
+
+    /* Proteção da área do médico */
+
+    if(
+        id === "medico" &&
+        (!usuarioAtual ||
+        usuarioAtual.tipo !== "medico")
+    ) {
+
+        showPage("login");
+
+        return;
+    }
+
+
+    /* Proteção da área administrativa */
+
+    if(
+        id === "admin" &&
+        (!usuarioAtual ||
+        usuarioAtual.tipo !== "admin")
+    ) {
+
+        abrirLoginAdmin();
+
+        return;
+    }
+
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
+
+            page.classList.remove("active");
+
+        });
+
+
+    const page =
+        document.getElementById(id);
+
+
+    if(page) {
+
+        page.classList.add("active");
+
+    }
+
+
+    atualizarTela();
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   ABRIR LOGIN ADMIN
+===================================================== */
+
+function abrirLoginAdmin() {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
+
+            page.classList.remove("active");
+
+        });
+
+
+    document
+        .getElementById("loginAdmin")
+        .classList.add("active");
+
+
+    document.getElementById(
+        "adminUsuario"
+    ).value = "";
+
+    document.getElementById(
+        "adminSenha"
+    ).value = "";
+
+
+    document.getElementById(
+        "adminLoginAlert"
+    ).style.display = "none";
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   LOGIN ADMIN
+===================================================== */
+
+function loginAdmin() {
+
+    const usuario =
+        document.getElementById(
+            "adminUsuario"
+        ).value.trim();
+
+    const senha =
+        document.getElementById(
+            "adminSenha"
+        ).value;
+
+
+    /*
+       CREDENCIAIS ADMINISTRATIVAS
+       Não são mostradas na interface.
+    */
+
+    if(
+        usuario === "admin" &&
+        senha === "admin123"
+    ) {
+
+        usuarioAtual = {
+
+            tipo: "admin",
+
+            nome: "Administrador"
+
+        };
+
+
+        sessionStorage.setItem(
+            "usuarioAtual",
+            JSON.stringify(usuarioAtual)
+        );
+
+
+        document.getElementById(
+            "adminUsuario"
+        ).value = "";
+
+        document.getElementById(
+            "adminSenha"
+        ).value = "";
+
+
+        showPage("admin");
+
+        return;
+
+    }
+
+
+    alerta(
+        "adminLoginAlert",
+        "Usuário ou senha administrativos incorretos.",
+        "error"
+    );
+
+}
+
+
+/* =====================================================
+   ALERTAS
+===================================================== */
+
+function alerta(id, mensagem, tipo) {
+
+    const elemento =
+        document.getElementById(id);
+
+
+    if(!elemento) return;
+
+
+    elemento.innerText =
+        mensagem;
+
+
+    elemento.className =
+        "alert " + tipo;
+
+
+    elemento.style.display =
+        "block";
+
+}
+
+
+/* =====================================================
+   CADASTRO PACIENTE
+===================================================== */
+
+function cadastrarPaciente(event) {
+
+    event.preventDefault();
+
+
+    const nome =
+        document.getElementById("cadNome").value;
+
+    const telefone =
+        document.getElementById("cadTelefone").value;
+
+    const nascimento =
+        document.getElementById("cadNascimento").value;
+
+    const email =
+        document.getElementById("cadEmail").value.trim();
+
+    const senha =
+        document.getElementById("cadSenha").value;
+
+
+    const existente =
+        pacientes.find(
+            p =>
+                p.email.toLowerCase() ===
+                email.toLowerCase()
+        );
+
+
+    if(existente) {
+
+        alerta(
+            "cadastroAlert",
+            "Este e-mail já está cadastrado.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const agora =
+        new Date();
+
+
+    const novoPaciente = {
+
+        id:
+            pacientes.length
+            ? Math.max(...pacientes.map(p => p.id)) + 1
+            : 1,
+
+        nome: nome,
+
+        telefone: telefone,
+
+        nascimento: nascimento,
+
+        email: email,
+
+        senha: senha,
+
+        dataCadastro:
+            agora.toLocaleDateString("pt-BR"),
+
+        horarioCadastro:
+            agora.toLocaleTimeString("pt-BR")
+
+    };
+
+
+    pacientes.push(
+        novoPaciente
+    );
+
+
+    salvarDados();
+
+
+    alerta(
+        "cadastroAlert",
+        "Conta criada com sucesso! Agora você pode entrar.",
+        "success"
+    );
+
+
+    event.target.reset();
+
+}
+
+
+/* =====================================================
+   SOLICITAÇÃO DE MÉDICO
+===================================================== */
+
+function solicitarCadastroMedico(event) {
+
+    event.preventDefault();
+
+
+    const email =
+        document.getElementById(
+            "medEmail"
+        ).value.trim();
+
+
+    if(
+        solicitacoes.some(
+            s =>
+                s.email.toLowerCase() ===
+                email.toLowerCase()
+        ) ||
+        medicos.some(
+            m =>
+                m.email.toLowerCase() ===
+                email.toLowerCase()
+        )
+    ) {
+
+        alerta(
+            "medicoAlert",
+            "Este e-mail já possui cadastro ou solicitação.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const agora =
+        new Date();
+
+
+    solicitacoes.push({
+
+        id:
+            solicitacoes.length
+            ? Math.max(...solicitacoes.map(s => s.id)) + 1
+            : 1,
+
+        nome:
+            document.getElementById(
+                "medNome"
+            ).value,
+
+        especialidade:
+            document.getElementById(
+                "medEspecialidade"
+            ).value,
+
+        unidadeId:
+            Number(document.getElementById(
+                "medUnidade"
+            ).value),
+
+        telefone:
+            document.getElementById(
+                "medTelefone"
+            ).value,
+
+        email:
+            email,
+
+        senha:
+            document.getElementById(
+                "medSenha"
+            ).value,
+
+        data:
+            agora.toLocaleDateString("pt-BR"),
+
+        horario:
+            agora.toLocaleTimeString("pt-BR"),
+
+        status:
+            "Pendente"
+
+    });
+
+
+    salvarDados();
+
+
+    alerta(
+        "medicoAlert",
+        "Solicitação enviada. Aguarde a aprovação do administrador.",
+        "success"
+    );
+
+
+    event.target.reset();
+
+}
+
+
+/* =====================================================
+   LOGIN PACIENTE / MÉDICO
+===================================================== */
+
+function login() {
+
+    const email =
+        document.getElementById(
+            "loginEmail"
+        ).value.trim();
+
+    const senha =
+        document.getElementById(
+            "loginSenha"
+        ).value;
+
+
+    /* LOGIN PACIENTE */
+
+    const paciente =
+        pacientes.find(
+            p =>
+                p.email.toLowerCase() ===
+                email.toLowerCase() &&
+                p.senha === senha
+        );
+
+
+    if(paciente) {
+
+        usuarioAtual = {
+
+            tipo: "paciente",
+
+            id: paciente.id
+
+        };
+
+
+        sessionStorage.setItem(
+            "usuarioAtual",
+            JSON.stringify(usuarioAtual)
+        );
+
+
+        showPage("paciente");
+
+        return;
+
+    }
+
+
+    /* LOGIN MÉDICO */
+
+    const medico =
+        medicos.find(
+            m =>
+                m.email.toLowerCase() ===
+                email.toLowerCase() &&
+                m.senha === senha
+        );
+
+
+    if(medico) {
+
+        usuarioAtual = {
+
+            tipo: "medico",
+
+            id: medico.id
+
+        };
+
+
+        sessionStorage.setItem(
+            "usuarioAtual",
+            JSON.stringify(usuarioAtual)
+        );
+
+
+        showPage("medico");
+
+        return;
+
+    }
+
+
+    alerta(
+        "loginAlert",
+        "E-mail ou senha incorretos.",
+        "error"
+    );
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout() {
+
+    usuarioAtual =
+        null;
+
+
+    sessionStorage.removeItem(
+        "usuarioAtual"
+    );
+
+
+    showPage("home");
+
+}
+
+
+/* =====================================================
+   SERVIÇOS
+===================================================== */
+
+function carregarServicos() {
+
+    const container =
+        document.getElementById(
+            "listaServicos"
+        );
+
+
+    if(!container) return;
+
+
+    container.innerHTML = "";
+
+
+    servicos.forEach(servico => {
+
+        container.innerHTML += `
+
+            <div class="card">
+
+                <h3>
+                    ${servico.nome}
+                </h3>
+
+                <p>
+                    ${servico.descricao}
+                </p>
+
+                <p>
+                    <strong>
+                        R$ ${servico.valor.toFixed(2)}
+                    </strong>
+                </p>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+
+/* =====================================================
+   MÉDICOS
+===================================================== */
+
+function carregarMedicos() {
+
+    const container =
+        document.getElementById(
+            "listaMedicos"
+        );
+
+
+    if(!container) return;
+
+
+    container.innerHTML = "";
+
+
+    if(medicos.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="card">
+
+                <h3>
+                    Nenhum médico cadastrado
+                </h3>
+
+                <p>
+                    Aguarde a aprovação de novos profissionais.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    medicos.forEach(medico => {
+
+        container.innerHTML += `
+
+            <div class="card">
+
+                <h3>
+                    Dr(a). ${medico.nome}
+                </h3>
+
+                <p>
+                    <strong>
+                        Especialidade:
+                    </strong>
+
+                    ${medico.especialidade}
+                </p>
+
+                <p>
+                    ${medico.email}
+                </p>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+
+/* =====================================================
+   FORMULÁRIO CONSULTA
+===================================================== */
+
+function carregarFormularioConsulta() {
+
+    const servicoSelect = document.getElementById("consultaServico");
+    const medicoSelect = document.getElementById("consultaMedico");
+    const unidadeSelect = document.getElementById("consultaUnidade");
+
+    if(!servicoSelect || !medicoSelect || !unidadeSelect) return;
+
+    servicoSelect.innerHTML = '<option value="">Selecione um serviço</option>';
+    unidadeSelect.innerHTML = '<option value="">Selecione uma unidade</option>';
+    medicoSelect.innerHTML = '<option value="">Primeiro selecione uma unidade</option>';
+
+    servicos.forEach(s => {
+        servicoSelect.innerHTML += `
+            <option value="${s.id}">
+                ${s.nome} - R$ ${s.valor.toFixed(2)}
+            </option>`;
+    });
+
+    unidades.forEach(u => {
+        unidadeSelect.innerHTML += `
+            <option value="${u.id}">
+                ${u.nome} - ${u.cidade}
+            </option>`;
+    });
+}
+
+function filtrarMedicosPorUnidade() {
+    const unidadeId = Number(document.getElementById("consultaUnidade").value);
+    const medicoSelect = document.getElementById("consultaMedico");
+
+    if(!medicoSelect) return;
+
+    medicoSelect.innerHTML = '<option value="">Selecione um médico</option>';
+
+    if(!unidadeId) {
+        medicoSelect.innerHTML = '<option value="">Primeiro selecione uma unidade</option>';
+        return;
+    }
+
+    const medicosDaUnidade = medicos.filter(m => Number(m.unidadeId || 1) === unidadeId);
+
+    if(medicosDaUnidade.length === 0) {
+        medicoSelect.innerHTML = '<option value="">Nenhum médico disponível nesta unidade</option>';
+        return;
+    }
+
+    const unidade = unidades.find(u => u.id === unidadeId);
+
+    medicosDaUnidade.forEach(m => {
+        medicoSelect.innerHTML += `
+            <option value="${m.id}">
+                Dr(a). ${m.nome} - ${m.especialidade} | ${unidade ? unidade.nome : "Unidade"}
+            </option>`;
+    });
+}
+
+
+/* =====================================================
+   AGENDAR CONSULTA
+===================================================== */
+
+function agendarConsulta() {
+
+    if(!usuarioAtual || usuarioAtual.tipo !== "paciente") {
+        alert("Você precisa estar logado como paciente.");
+        showPage("login");
+        return;
+    }
+
+    const servico = document.getElementById("consultaServico").value;
+    const unidade = document.getElementById("consultaUnidade").value;
+    const medico = document.getElementById("consultaMedico").value;
+    const data = document.getElementById("consultaData").value;
+    const horario = document.getElementById("consultaHorario").value;
+    const observacao = document.getElementById("consultaObservacao").value;
+
+    if(!servico || !unidade || !medico || !data || !horario) {
+        alerta("consultaAlert", "Preencha todos os campos obrigatórios.", "error");
+        return;
+    }
+
+    const medicoEscolhido = medicos.find(m => m.id == medico);
+    if(!medicoEscolhido || Number(medicoEscolhido.unidadeId || 1) !== Number(unidade)) {
+        alerta("consultaAlert", "Escolha um médico que atenda na unidade selecionada.", "error");
+        return;
+    }
+
+    const novaConsulta = {
+        id: consultas.length ? Math.max(...consultas.map(c => c.id)) + 1 : 1,
+        pacienteId: usuarioAtual.id,
+        medicoId: Number(medico),
+        servicoId: Number(servico),
+        unidadeId: Number(unidade),
+        data: data,
+        horario: horario,
+        dataSugerida: data,
+        horarioSugerido: horario,
+        status: "Aguardando confirmação",
+        observacoes: observacao
+    };
+
+    consultas.push(novaConsulta);
+    salvarDados();
+
+    alerta(
+        "consultaAlert",
+        "Sugestão enviada ao médico. Aguarde a confirmação do horário.",
+        "success"
+    );
+
+    document.getElementById("consultaData").value = "";
+    document.getElementById("consultaHorario").value = "";
+    document.getElementById("consultaObservacao").value = "";
+
+    atualizarTela();
+}
+
+
+/* =====================================================
+   CONSULTAS DO PACIENTE
+===================================================== */
+
+function carregarMinhasConsultas() {
+
+    if(
+        !usuarioAtual ||
+        usuarioAtual.tipo !== "paciente"
+    ) return;
+
+
+    const paciente =
+        pacientes.find(
+            p =>
+                p.id === usuarioAtual.id
+        );
+
+
+    if(!paciente) return;
+
+
+    const container =
+        document.getElementById(
+            "minhasConsultas"
+        );
+
+
+    if(!container) return;
+
+
+    const minhas =
+        consultas.filter(
+            c =>
+                c.pacienteId === paciente.id
+        );
+
+
+    if(minhas.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="card">
+                Nenhuma consulta agendada.
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    let html = `
+
+        <table>
+
+            <tr>
+
+                <th>Data</th>
+                <th>Horário</th>
+                <th>Médico</th>
+                <th>Serviço</th>
+                <th>Unidade</th>
+                <th>Status</th>
+
+            </tr>
+
+    `;
+
+
+    minhas.forEach(c => {
+
+        const medico =
+            medicos.find(
+                m =>
+                    m.id === c.medicoId
+            );
+
+
+        const servico =
+            servicos.find(
+                s =>
+                    s.id === c.servicoId
+            );
+
+
+        const unidade =
+            unidades.find(
+                u =>
+                    u.id === c.unidadeId
+            );
+
+
+        html += `
+
+            <tr>
+
+                <td>
+                    ${formatarData(c.data)}
+                </td>
+
+                <td>
+                    ${c.horario}
+                </td>
+
+                <td>
+                    ${medico ? medico.nome : "N/A"}
+                </td>
+
+                <td>
+                    ${servico ? servico.nome : "N/A"}
+                </td>
+
+                <td>
+                    ${unidade ? unidade.nome : "N/A"}
+                </td>
+
+                <td>
+
+                    <span class="status
+                        status-${c.status.toLowerCase()}">
+
+                        ${c.status}
+
+                    </span>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+
+    html += "</table>";
+
+
+    container.innerHTML =
+        html;
+
+}
+
+
+/* =====================================================
+   ÁREA MÉDICO
+===================================================== */
+
+function carregarAgendaMedico() {
+
+    if(!usuarioAtual || usuarioAtual.tipo !== "medico") return;
+
+    const medico = medicos.find(m => m.id === usuarioAtual.id);
+    if(!medico) return;
+
+    const unidadeMedico = unidades.find(u => u.id === Number(medico.unidadeId || 1));
+
+    document.getElementById("medicoPerfil").innerHTML = `
+        <h3>Dr(a). ${medico.nome}</h3>
+        <p>Especialidade: ${medico.especialidade}</p>
+        <p>Unidade: ${unidadeMedico ? unidadeMedico.nome : "Não definida"}</p>
+        <p>E-mail: ${medico.email}</p>
+        <br>
+        <button onclick="logout()">Sair</button>`;
+
+    const agenda = consultas
+        .filter(c => c.medicoId === medico.id)
+        .sort((a,b) => (a.data+a.horario).localeCompare(b.data+b.horario));
+
+    const container = document.getElementById("agendaMedico");
+
+    if(agenda.length === 0) {
+        container.innerHTML = '<div class="card">Nenhuma solicitação de consulta.</div>';
+        return;
+    }
+
+    let html = `
+        <table>
+            <tr>
+                <th>Paciente</th>
+                <th>Serviço</th>
+                <th>Unidade</th>
+                <th>Data sugerida</th>
+                <th>Horário sugerido</th>
+                <th>Status</th>
+                <th>Confirmação do médico</th>
+            </tr>`;
+
+    agenda.forEach(c => {
+        const paciente = pacientes.find(p => p.id === c.pacienteId);
+        const servico = servicos.find(s => s.id === c.servicoId);
+        const unidade = unidades.find(u => u.id === c.unidadeId);
+
+        html += `
+            <tr>
+                <td>${paciente ? paciente.nome : "N/A"}</td>
+                <td>${servico ? servico.nome : "N/A"}</td>
+                <td>${unidade ? unidade.nome : "N/A"}</td>
+                <td>${formatarData(c.dataSugerida || c.data)}</td>
+                <td>${c.horarioSugerido || c.horario}</td>
+                <td>${c.status}</td>
+                <td>
+                    ${c.status === "Aguardando confirmação" ? `
+                        <input type="date" id="medData-${c.id}" value="${c.dataSugerida || c.data}">
+                        <input type="time" id="medHora-${c.id}" value="${c.horarioSugerido || c.horario}">
+                        <button class="btn-success" onclick="confirmarHorarioConsulta(${c.id})">Confirmar horário</button>
+                        <button class="btn-danger" onclick="alterarStatusConsulta(${c.id}, 'Cancelada')">Recusar</button>
+                    ` : `
+                        ${c.status === "Confirmada" ? `${formatarData(c.data)} às ${c.horario}` : c.status}
+                    `}
+                </td>
+            </tr>`;
+    });
+
+    html += "</table>";
+    container.innerHTML = html;
+}
+
+function confirmarHorarioConsulta(id) {
+    const consulta = consultas.find(c => c.id === id);
+    if(!consulta) return;
+
+    const data = document.getElementById(`medData-${id}`).value;
+    const horario = document.getElementById(`medHora-${id}`).value;
+
+    if(!data || !horario) {
+        alert("Informe a data e o horário que podem ser confirmados.");
+        return;
+    }
+
+    const horarioOcupado = consultas.some(c =>
+        c.id !== id &&
+        c.medicoId === consulta.medicoId &&
+        c.data === data &&
+        c.horario === horario &&
+        c.status === "Confirmada"
+    );
+
+    if(horarioOcupado) {
+        alert("Esse horário já está confirmado para outra consulta.");
+        return;
+    }
+
+    consulta.data = data;
+    consulta.horario = horario;
+    consulta.status = "Confirmada";
+    salvarDados();
+    atualizarTela();
+}
+
+
+/* =====================================================
+   ALTERAR STATUS CONSULTA
+===================================================== */
+
+function alterarStatusConsulta(id, status) {
+
+    const consulta =
+        consultas.find(
+            c =>
+                c.id === id
+        );
+
+
+    if(!consulta) return;
+
+
+    consulta.status =
+        status;
+
+
+    salvarDados();
+
+
+    atualizarTela();
+
+}
+
+
+/* =====================================================
+   ADMIN - SOLICITAÇÕES
+===================================================== */
+
+function carregarSolicitacoesAdmin() {
+
+    const container =
+        document.getElementById(
+            "solicitacoesMedicos"
+        );
+
+
+    if(!container) return;
+
+
+    if(solicitacoes.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="card">
+                Nenhuma solicitação de médico.
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    let html = `
+
+        <table>
+
+            <tr>
+
+                <th>Nome</th>
+                <th>Especialidade</th>
+                <th>E-mail</th>
+                <th>Data</th>
+                <th>Horário</th>
+                <th>Status</th>
+                <th>Ação</th>
+
+            </tr>
+
+    `;
+
+
+    solicitacoes.forEach(s => {
+
+        html += `
+
+            <tr>
+
+                <td>
+                    ${s.nome}
+                </td>
+
+                <td>
+                    ${s.especialidade}
+                </td>
+
+                <td>
+                    ${s.email}
+                </td>
+
+                <td>
+                    ${s.data}
+                </td>
+
+                <td>
+                    ${s.horario}
+                </td>
+
+                <td>
+                    ${s.status}
+                </td>
+
+                <td>
+
+                    ${
+                        s.status === "Pendente"
+
+                        ?
+
+                        `
+
+                        <button
+                            class="btn-success"
+                            onclick="aprovarMedico(${s.id})">
+
+                            Aprovar
+
+                        </button>
+
+                        <button
+                            class="btn-danger"
+                            onclick="reprovarMedico(${s.id})">
+
+                            Reprovar
+
+                        </button>
+
+                        `
+
+                        :
+
+                        "Finalizado"
+
+                    }
+
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+
+    html += "</table>";
+
+
+    container.innerHTML =
+        html;
+
+}
+
+
+/* =====================================================
+   APROVAR MÉDICO
+===================================================== */
+
+function aprovarMedico(id) {
+
+    if(
+        !usuarioAtual ||
+        usuarioAtual.tipo !== "admin"
+    ) {
+
+        alert(
+            "Apenas o administrador pode aprovar médicos."
+        );
+
+        return;
+
+    }
+
+
+    const solicitacao =
+        solicitacoes.find(
+            s =>
+                s.id === id
+        );
+
+
+    if(!solicitacao) return;
+
+
+    if(
+        medicos.some(
+            m =>
+                m.email.toLowerCase() ===
+                solicitacao.email.toLowerCase()
+        )
+    ) {
+
+        alert(
+            "Este médico já está cadastrado."
+        );
+
+        return;
+
+    }
+
+
+    const agora =
+        new Date();
+
+
+    medicos.push({
+
+        id:
+            medicos.length
+            ? Math.max(...medicos.map(m => m.id)) + 1
+            : 1,
+
+        nome:
+            solicitacao.nome,
+
+        especialidade:
+            solicitacao.especialidade,
+
+        unidadeId:
+            solicitacao.unidadeId || 1,
+
+        telefone:
+            solicitacao.telefone,
+
+        email:
+            solicitacao.email,
+
+        senha:
+            solicitacao.senha,
+
+        dataCadastro:
+            agora.toLocaleDateString("pt-BR"),
+
+        horarioCadastro:
+            agora.toLocaleTimeString("pt-BR")
+
+    });
+
+
+    solicitacao.status =
+        "Aprovado";
+
+
+    salvarDados();
+
+
+    atualizarTela();
+
+
+    alert(
+        "Médico aprovado com sucesso."
+    );
+
+}
+
+
+/* =====================================================
+   REPROVAR MÉDICO
+===================================================== */
+
+function reprovarMedico(id) {
+
+    if(
+        !usuarioAtual ||
+        usuarioAtual.tipo !== "admin"
+    ) {
+
+        alert(
+            "Apenas o administrador pode reprovar médicos."
+        );
+
+        return;
+
+    }
+
+
+    const solicitacao =
+        solicitacoes.find(
+            s =>
+                s.id === id
+        );
+
+
+    if(!solicitacao) return;
+
+
+    solicitacao.status =
+        "Reprovado";
+
+
+    salvarDados();
+
+
+    atualizarTela();
+
+}
+
+
+/* =====================================================
+   CADASTRAR MÉDICO PELO ADMIN
+===================================================== */
+
+function cadastrarMedicoAdmin(event) {
+
+    event.preventDefault();
+
+
+    if(
+        !usuarioAtual ||
+        usuarioAtual.tipo !== "admin"
+    ) {
+
+        alert(
+            "Apenas o administrador pode cadastrar médicos."
+        );
+
+        return;
+
+    }
+
+
+    const nome =
+        document.getElementById(
+            "adminMedNome"
+        ).value.trim();
+
+
+    const especialidade =
+        document.getElementById(
+            "adminMedEspecialidade"
+        ).value;
+
+
+    const telefone =
+        document.getElementById(
+            "adminMedTelefone"
+        ).value.trim();
+
+
+    const email =
+        document.getElementById(
+            "adminMedEmail"
+        ).value.trim();
+
+
+    const senha =
+        document.getElementById(
+            "adminMedSenha"
+        ).value;
+
+
+    if(
+        medicos.some(
+            m =>
+                m.email.toLowerCase() ===
+                email.toLowerCase()
+        ) ||
+
+        solicitacoes.some(
+            s =>
+                s.email.toLowerCase() ===
+                email.toLowerCase()
+        )
+    ) {
+
+        alerta(
+            "cadastroMedicoAdminAlert",
+            "Este e-mail já está cadastrado ou possui uma solicitação.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const agora =
+        new Date();
+
+
+    medicos.push({
+
+        id:
+            medicos.length
+            ? Math.max(...medicos.map(m => m.id)) + 1
+            : 1,
+
+        nome:
+            nome,
+
+        especialidade:
+            especialidade,
+
+        telefone:
+            telefone,
+
+        email:
+            email,
+
+        senha:
+            senha,
+
+        dataCadastro:
+            agora.toLocaleDateString("pt-BR"),
+
+        horarioCadastro:
+            agora.toLocaleTimeString("pt-BR")
+
+    });
+
+
+    salvarDados();
+
+
+    alerta(
+        "cadastroMedicoAdminAlert",
+        "Médico cadastrado com sucesso. Ele já está disponível para os pacientes.",
+        "success"
+    );
+
+
+    event.target.reset();
+
+
+    atualizarTela();
+
+}
+
+
+/* =====================================================
+   TABELA PACIENTES ADMIN
+===================================================== */
+
+function carregarPacientesAdmin() {
+
+    const container =
+        document.getElementById(
+            "tabelaPacientes"
+        );
+
+
+    if(!container) return;
+
+
+    let html = `
+
+        <table>
+
+            <tr>
+
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>E-mail</th>
+                <th>Data cadastro</th>
+                <th>Horário cadastro</th>
+
+            </tr>
+
+    `;
+
+
+    pacientes.forEach(p => {
+
+        html += `
+
+            <tr>
+
+                <td>
+                    ${p.nome}
+                </td>
+
+                <td>
+                    ${p.telefone}
+                </td>
+
+                <td>
+                    ${p.email}
+                </td>
+
+                <td>
+                    ${p.dataCadastro}
+                </td>
+
+                <td>
+                    ${p.horarioCadastro}
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+
+    html += "</table>";
+
+
+    container.innerHTML =
+        html;
+
+}
+
+
+/* =====================================================
+   TABELA MÉDICOS ADMIN
+===================================================== */
+
+function carregarMedicosAdmin() {
+
+    const container =
+        document.getElementById(
+            "tabelaMedicos"
+        );
+
+
+    if(!container) return;
+
+
+    let html = `
+
+        <table>
+
+            <tr>
+
+                <th>Nome</th>
+                <th>Especialidade</th>
+                <th>Telefone</th>
+                <th>E-mail</th>
+                <th>Data cadastro</th>
+                <th>Horário cadastro</th>
+
+            </tr>
+
+    `;
+
+
+    medicos.forEach(m => {
+
+        html += `
+
+            <tr>
+
+                <td>
+                    ${m.nome}
+                </td>
+
+                <td>
+                    ${m.especialidade}
+                </td>
+
+                <td>
+                    ${m.telefone || "-"}
+                </td>
+
+                <td>
+                    ${m.email}
+                </td>
+
+                <td>
+                    ${m.dataCadastro || "-"}
+                </td>
+
+                <td>
+                    ${m.horarioCadastro || "-"}
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+
+    html += "</table>";
+
+
+    container.innerHTML =
+        html;
+
+}
+
+
+/* =====================================================
+   TABELA CONSULTAS ADMIN
+===================================================== */
+
+function carregarConsultasAdmin() {
+
+    const container =
+        document.getElementById(
+            "tabelaConsultas"
+        );
+
+
+    if(!container) return;
+
+
+    let html = `
+
+        <table>
+
+            <tr>
+
+                <th>Paciente</th>
+                <th>Médico</th>
+                <th>Especialidade</th>
+                <th>Serviço</th>
+                <th>Unidade</th>
+                <th>Data</th>
+                <th>Horário</th>
+                <th>Status</th>
+
+            </tr>
+
+    `;
+
+
+    consultas
+    .slice()
+    .sort(
+        (a,b) =>
+            (a.data+a.horario)
+            .localeCompare(
+                b.data+b.horario
+            )
+    )
+    .forEach(c => {
+
+        const paciente =
+            pacientes.find(
+                p =>
+                    p.id === c.pacienteId
+            );
+
+
+        const medico =
+            medicos.find(
+                m =>
+                    m.id === c.medicoId
+            );
+
+
+        const servico =
+            servicos.find(
+                s =>
+                    s.id === c.servicoId
+            );
+
+
+        const unidade =
+            unidades.find(
+                u =>
+                    u.id === c.unidadeId
+            );
+
+
+        html += `
+
+            <tr>
+
+                <td>
+                    ${paciente ? paciente.nome : "N/A"}
+                </td>
+
+                <td>
+                    ${medico ? medico.nome : "N/A"}
+                </td>
+
+                <td>
+                    ${medico ? medico.especialidade : "N/A"}
+                </td>
+
+                <td>
+                    ${servico ? servico.nome : "N/A"}
+                </td>
+
+                <td>
+                    ${unidade ? unidade.nome : "N/A"}
+                </td>
+
+                <td>
+                    ${formatarData(c.data)}
+                </td>
+
+                <td>
+                    ${c.horario}
+                </td>
+
+                <td>
+                    ${c.status}
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+
+    html += "</table>";
+
+
+    container.innerHTML =
+        html;
+
+}
+
+
+/* =====================================================
+   PERFIL PACIENTE
+===================================================== */
+
+function carregarPaciente() {
+
+    if(
+        !usuarioAtual ||
+        usuarioAtual.tipo !== "paciente"
+    ) return;
+
+
+    const paciente =
+        pacientes.find(
+            p =>
+                p.id === usuarioAtual.id
+        );
+
+
+    if(!paciente) return;
+
+
+    document.getElementById(
+        "pacientePerfil"
+    ).innerHTML = `
+
+        <h3>
+            Olá, ${paciente.nome}!
+        </h3>
+
+        <p>
+            E-mail: ${paciente.email}
+        </p>
+
+        <p>
+            Telefone: ${paciente.telefone}
+        </p>
+
+        <p>
+            Cadastro realizado em:
+            ${paciente.dataCadastro}
+            às
+            ${paciente.horarioCadastro}
+        </p>
+
+        <br>
+
+        <button onclick="logout()">
+            Sair
+        </button>
+
+    `;
+
+}
+
+
+/* =====================================================
+   ATUALIZAÇÃO GERAL
+===================================================== */
+
+function atualizarTela() {
+
+    carregarServicos();
+
+    carregarMedicos();
+
+    carregarFormularioConsulta();
+
+
+    if(
+        usuarioAtual &&
+        usuarioAtual.tipo === "paciente"
+    ) {
+
+        carregarPaciente();
+
+        carregarMinhasConsultas();
+
+    }
+
+
+    if(
+        usuarioAtual &&
+        usuarioAtual.tipo === "medico"
+    ) {
+
+        carregarAgendaMedico();
+
+    }
+
+
+    if(
+        usuarioAtual &&
+        usuarioAtual.tipo === "admin"
+    ) {
+
+        document.getElementById(
+            "totalPacientes"
+        ).innerText =
+            pacientes.length;
+
+
+        document.getElementById(
+            "totalMedicos"
+        ).innerText =
+            medicos.length;
+
+
+        document.getElementById(
+            "totalConsultas"
+        ).innerText =
+            consultas.length;
+
+
+        document.getElementById(
+            "totalSolicitacoes"
+        ).innerText =
+            solicitacoes.filter(
+                s =>
+                    s.status === "Pendente"
+            ).length;
+
+
+        carregarSolicitacoesAdmin();
+
+        carregarPacientesAdmin();
+
+        carregarMedicosAdmin();
+
+        carregarConsultasAdmin();
+
+    }
+
+}
+
+
+/* =====================================================
+   FORMATAÇÃO DE DATA
+===================================================== */
+
+function formatarData(data) {
+
+    if(!data)
+        return "";
+
+
+    const partes =
+        data.split("-");
+
+
+    if(partes.length !== 3)
+        return data;
+
+
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+
+}
+
+
+/* =====================================================
+   INICIALIZAÇÃO
+===================================================== */
+
+salvarDados();
+
+atualizarTela();
+
+
+/* =====================================================
+   RECUPERAR LOGIN APÓS ATUALIZAÇÃO
+===================================================== */
+
+if(usuarioAtual) {
+
+    if(usuarioAtual.tipo === "paciente") {
+
+        showPage("paciente");
+
+    }
+
+    else if(usuarioAtual.tipo === "medico") {
+
+        showPage("medico");
+
+    }
+
+    else if(usuarioAtual.tipo === "admin") {
+
+        showPage("admin");
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
